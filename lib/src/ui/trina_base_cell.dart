@@ -441,6 +441,7 @@ class _CellContainerState extends TrinaStateWithChange<_CellContainer> {
         isGroupedRowCell:
             stateManager.enabledRowGroups &&
             stateManager.rowGroupDelegate!.isExpandableCell(widget.cell),
+        showRightBorder: widget.column.showRightBorder,
         enableCellVerticalBorder: style.enableCellBorderVertical,
         borderColor: style.borderColor,
         activatedBorderColor: style.activatedBorderColor,
@@ -503,6 +504,7 @@ class _CellContainerState extends TrinaStateWithChange<_CellContainer> {
     required bool isCurrentCell,
     required bool isSelectedCell,
     required bool isGroupedRowCell,
+    required bool showRightBorder,
     required bool enableCellVerticalBorder,
     required Color borderColor,
     required Color activatedBorderColor,
@@ -566,7 +568,7 @@ class _CellContainerState extends TrinaStateWithChange<_CellContainer> {
 
       return BoxDecoration(
         color: isDirty ? dirtyColor : cellCallbackColor ?? defaultColor,
-        border: hasCustomColor
+        border: hasCustomColor && showRightBorder
             ? Border(
                 right: BorderSide(
                   color: borderColor,
@@ -579,7 +581,7 @@ class _CellContainerState extends TrinaStateWithChange<_CellContainer> {
                       )
                     : BorderSide.none,
               )
-            : enableCellVerticalBorder
+            : enableCellVerticalBorder && showRightBorder
             ? BorderDirectional(
                 end: BorderSide(
                   color: borderColor,

@@ -93,6 +93,12 @@ class TrinaColumn {
   /// Background color of column title.
   Color? backgroundColor;
 
+  /// Whether to draw the vertical border on the trailing (right, in LTR)
+  /// edge of this column's cells while they are in their normal
+  /// (non-focused, non-selected) state. Set to `false` on a column to make
+  /// it look visually merged with the column immediately after it.
+  bool showRightBorder;
+
   /// Customize the widget in the default cell.
   ///
   /// ```dart
@@ -305,6 +311,7 @@ class TrinaColumn {
     this.formatter,
     this.applyFormatterInEditing = false,
     this.backgroundColor,
+    this.showRightBorder = true,
     this.renderer,
     this.footerRenderer,
     this.titleRenderer,
