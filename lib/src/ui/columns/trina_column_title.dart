@@ -457,7 +457,7 @@ class _DefaultColumnTitleContent extends StatelessWidget {
       decoration: BoxDecoration(
         color: column.backgroundColor,
         border: BorderDirectional(
-          end: style.enableColumnBorderVertical
+          end: style.enableColumnBorderVertical && column.showRightBorder
               ? BorderSide(color: style.borderColor, width: 1.0)
               : BorderSide.none,
         ),
