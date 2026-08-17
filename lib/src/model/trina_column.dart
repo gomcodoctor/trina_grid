@@ -41,6 +41,12 @@ class TrinaColumn {
 
   double minWidth;
 
+  /// Upper bound applied after auto-sizing ([TrinaAutoSizeMode.equal] /
+  /// [TrinaAutoSizeMode.scale]) grows this column to fill the grid's width.
+  /// `null` means no cap. Manual drag-resizing is unaffected — this only
+  /// clamps the width auto-sizing computes.
+  double? maxWidth;
+
   /// Customisable title padding.
   /// It takes precedence over defaultColumnTitlePadding in TrinaGridConfiguration.
   EdgeInsets? titlePadding;
@@ -300,6 +306,7 @@ class TrinaColumn {
     TrinaColumnCheckReadOnly? checkReadOnly,
     this.width = TrinaGridSettings.columnWidth,
     this.minWidth = TrinaGridSettings.minColumnWidth,
+    this.maxWidth,
     this.titlePadding,
     this.filterPadding,
     this.titleSpan,

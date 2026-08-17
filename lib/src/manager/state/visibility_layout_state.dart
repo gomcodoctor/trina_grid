@@ -73,6 +73,22 @@ mixin VisibilityLayoutState implements ITrinaGridState {
       columns: refColumns,
       maxWidth: maxWidth! - offset,
     ).update();
+
+    _clampColumnsToMaxWidth();
+  }
+
+  /// Auto-sizing (equal/scale) only knows each column's [TrinaColumn.minWidth]
+  /// floor — it can grow a column past a caller-configured
+  /// [TrinaColumn.maxWidth] ceiling to fill the available grid width. Apply
+  /// that ceiling afterward so a column with variable-length content (e.g. a
+  /// name column) doesn't balloon on wide screens.
+  void _clampColumnsToMaxWidth() {
+    for (final column in refColumns) {
+      final double? cap = column.maxWidth;
+      if (cap != null && column.width > cap) {
+        column.width = cap;
+      }
+    }
   }
 
   void _updateColumnPosition() {
